@@ -1,0 +1,87 @@
+/* Nulstil standard margins og padding - "Reset" */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Body fungerer som hoved-grid der centrerer alt */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #eee;
+  color: #333;
+  
+  /* CSS Grid magi til at centrere indholdet på skærmen */
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+/* Hovedboksen - simulerer en telefon/app frame */
+#container {
+  background: white;
+  width: 100%;
+  max-width: 400px; /* Telefon bredde */
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  
+  /* Grid layout inde i boksen */
+  display: grid;
+  gap: 1.5rem; /* Luft mellem elementerne */
+  text-align: center;
+}
+
+h1 {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #888;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 1rem;
+}
+
+/* Resultat-området */
+#result {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: center; /* Centrerer indhold inkl. billede */
+}
+
+#className {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #222;
+}
+
+#classImage {
+  max-width: 100%;
+  border-radius: 12px;
+  display: none; /* Skjules indtil den aktiveres af JS */
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#message {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #555;
+  font-style: italic;
+}
+
+/* Video container */
+#videoDiv {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Selve video elementet fra p5.js */
+#videoDiv video {
+  width: 100% !important;
+  height: auto !important;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
