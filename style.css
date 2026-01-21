@@ -49,6 +49,31 @@ h1 {
   justify-items: center; /* Centrerer indhold inkl. billede */
 }
 
+/* Fuldskærms side style */
+.page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  background-color: white; /* Kan ændres hvis baggrunden skal være sort */
+  display: flex;
+  justify-content: center; /* Centrerer horisontalt */
+  align-items: center;     /* Centrerer vertikalt */
+}
+
+.page img {
+  height: 100%;       /* Højden styrer (mobilview-logik) */
+  width: auto;        /* Bredden justeres automatisk */
+  max-width: 100%;    /* Sikrer at vi ikke går ud over skærmen */
+  object-fit: contain; /* Hele billedet skal vises */
+  display: block;
+  
+  /* Lille transition for blødere skift */
+  transition: transform 0.1s ease-out;
+}
+
 #className {
   font-size: 2.5rem;
   font-weight: 800;
@@ -72,16 +97,26 @@ h1 {
 
 /* Video container */
 #videoDiv {
-  width: 100%;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 240px; /* Lille preview størrelse */
+  z-index: 2000; /* Sørg for at den ligger over fuldskærmsbilledet */
   display: flex;
   justify-content: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 /* Selve video elementet fra p5.js */
 #videoDiv video {
   width: 100% !important;
   height: auto !important;
-  border-radius: 12px;
-  margin-bottom: 1rem;
+  border-radius: 8px;
+  margin-bottom: 0;
+  transform: scaleX(-1); /* Vi spejlvender videoen visuelt */
+  display: block;
 }
 

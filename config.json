@@ -1,29 +1,23 @@
 {
   "debug": {
-    "showVideo": false,
-    "showLabel": false,
-    "showImage": true
+    "showVideo": true,
+    "showLabel": true
   },
   "classes": {
-    "med briller": {
-      "label": "Med briller",
-      "image": "assets/glasses.png",
-      "messages": [
-        "Du læser teori",
-        "Søren Kierkegaard ville være stolt",
-        "Systemtænker detected",
-        "Du spekulerer på verden"
-      ]
+    "Noting": {
+      "image": "assets/Noting.png"
     },
-    "uden briller": {
-      "label": "Uden briller",
-      "image": "assets/noglasses.png",
-      "messages": [
-        "Du er i nuet",
-        "Empiriker detected!",
-        "Direkte perception gang",
-        "Sanseligt nærvær"
-      ]
+    "Stop": {
+      "image": "assets/Stop.png"
+    },
+    "Play": {
+      "image": "assets/Play.png"
+    },
+    "Next": {
+      "image": "assets/Next.png"
+    },
+    "Download": {
+      "image": "assets/Download.png"
     }
   }
 }

@@ -7,7 +7,7 @@ var currentClass = ""  // Den klasse AI'en tror den ser lige nu
 var previousClass = "" // Den forrige klasse (så vi kan se om det ændrer sig)
 
 // Link til Teachable Machine-modellen
-var url = "https://teachablemachine.withgoogle.com/models/4Op_i__ud/"
+var url = "https://teachablemachine.withgoogle.com/models/6yFjg-Itx/"
 
 function preload() {
   // Indlæs modellen før programmet starter
@@ -54,13 +54,13 @@ function classify() {
   classifier.classify(mirror, function (results) {
     // Hent resultater
     if (results && results[0]) {
-      var label = results[0].label.toLowerCase().trim()
+      var label = results[0].label // Ingen toLowerCase() da filerne har store bogstaver
       var confidence = results[0].confidence
       
       // Tjek om klassen har ændret sig OG vi er ret sikre (over 80%)
       if (label !== previousClass && confidence > 0.8) {
         currentClass = label
-        updateDisplay() // Opdater kun skærmen ved skift
+        shiftPage(currentClass) // Opdater kun skærmen ved skift
         previousClass = currentClass
       }
     }
@@ -70,32 +70,22 @@ function classify() {
   })
 }
 
-function updateDisplay() {
-  // Hent data for den nuværende klasse fra config
-  // Vi tjekker om klassen findes i vores config
-  var classData = config.classes[currentClass]
-  
-  if (classData) {
-    // Opdater overskriften hvis config siger vi skal vise den
-    if (config.debug.showLabel) {
-      select('#className').html(classData.label)
-    } else {
-      select('#className').html("")
-    }
-    
-    // Vælg en tilfældig besked
-    var messages = classData.messages
-    var randomMessage = random(messages) // p5.js random() funktion er nem
-    
-    // Opdater beskeden
-    select('#message').html(randomMessage)
+function shiftPage(className) {
+  var pageView = select('#pageView')
+  var pageImage = select('#pageImage')
 
-    // Opdater billede
-    if (config.debug.showImage && classData.image) {
-      select('#classImage').attribute('src', classData.image)
-      select('#classImage').style('display', 'block')
-    } else {
-      select('#classImage').style('display', 'none')
-    }
+  // Vi slår klassen op i vores config fil i stedet for at gætte filnavnet
+  // Det gør det nemmere at ændre billeder uden at kode
+  if (config.classes[className]) {
+    var imgPath = config.classes[className].image
+    
+    // Opdater kilde og vis
+    pageImage.attribute('src', imgPath)
+    pageView.style('display', 'flex')
+    
+  } else {
+    // Hvis klassen ikke findes i config (f.eks. Background Noise)
+    console.log("Klassen '" + className + "' findes ikke i config.json")
   }
 }
+
